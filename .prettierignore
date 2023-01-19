@@ -1,0 +1,6 @@
+artifacts
+cache
+data
+
+secret.json
+secret.*.json

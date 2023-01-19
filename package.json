@@ -1,0 +1,40 @@
+{
+    "name": "lithium-smart-contracts",
+    "description": "",
+    "version": "1.0.0",
+    "main": "hardhat.config.js",
+    "devDependencies": {
+        "@nomiclabs/hardhat-ethers": "2.0.5",
+        "@nomiclabs/hardhat-waffle": "2.0.2",
+        "@openzeppelin/contracts": "4.5.0",
+        "eslint": "8.32.0",
+        "eslint-config-airbnb-base": "15.0.0",
+        "eslint-config-prettier": "8.6.0",
+        "eslint-plugin-import": "2.27.5",
+        "eslint-plugin-jest": "27.2.1",
+        "eslint-plugin-jsdoc": "39.6.6",
+        "ethers": "5.5.4",
+        "hardhat": "2.10.1",
+        "hardhat-abi-exporter": "2.8.0",
+        "prettier": "^2.8.3",
+        "prettier-plugin-solidity": "^1.1.1"
+    },
+    "scripts": {
+        "start": "npx hardhat node",
+        "build": "npx hardhat compile",
+        "format": "prettier --write .;npx eslint --cache --fix ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Lithium-Finance/lithium-smart-contracts"
+    },
+    "lint-staged": {
+        "*.{js,jsx}": "npm run fix"
+    },
+    "author": "Jonathan",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Lithium-Finance/smart-contracts/issues"
+    },
+    "homepage": "https://github.com/Lithium-Finance/smart-contracts#readme"
+}
