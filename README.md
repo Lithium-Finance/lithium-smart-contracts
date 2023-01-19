@@ -14,3 +14,7 @@
 | Contract | Address|
 |----------|--------|
 | Lithium  |0x188E817B02e635D482AE4D81e25DdA98A97C4a42|
+
+## Bug Bounty Program
+
+This repository is subject to the Lithium Finance Bug Bounty Program, per the terms defined [here](https://docs.lith.finance/guides/bug-bounty).
