@@ -170,13 +170,9 @@ contract EnquiryPoolV3 is ReentrancyGuard, Ownable, Pausable {
         emit Init();
     }
 
-    function createEnquiry(EnquiryLibV3.CreateEnquiryParam calldata _enquiry)
-        external
-        payable
-        virtual
-        onlyOwner
-        whenNotPaused
-    {
+    function createEnquiry(
+        EnquiryLibV3.CreateEnquiryParam calldata _enquiry
+    ) external payable virtual onlyOwner whenNotPaused {
         // check if the enquiry exist
         require(!existsEnquiry(totalEnquiry + 1), "EnquiryExist");
 
@@ -244,11 +240,10 @@ contract EnquiryPoolV3 is ReentrancyGuard, Ownable, Pausable {
         );
     }
 
-    function addReward(uint256 _enquiryId, uint256 _reward)
-        external
-        payable
-        enquiryExists(_enquiryId)
-    {
+    function addReward(
+        uint256 _enquiryId,
+        uint256 _reward
+    ) external payable enquiryExists(_enquiryId) {
         EnquiryLibV3.Enquiry storage enquiry = enquiries[_enquiryId];
 
         require(enquiries[_enquiryId].endTime >= block.timestamp, "OutsideAllowTime");
@@ -566,11 +561,10 @@ contract EnquiryPoolV3 is ReentrancyGuard, Ownable, Pausable {
         return MerkleProof.verify(_proof, _root, keccak256(_data));
     }
 
-    function postResultRoot(uint256 _enquiryId, bytes32 _root)
-        external
-        enquiryExists(_enquiryId)
-        onlyOwner
-    {
+    function postResultRoot(
+        uint256 _enquiryId,
+        bytes32 _root
+    ) external enquiryExists(_enquiryId) onlyOwner {
         // check if the commit time has pass
         require(
             (enquiries[_enquiryId].endTime + MAX_REVEAL_ANSWER_BUFFER) < block.timestamp &&
@@ -695,11 +689,7 @@ contract EnquiryPoolV3 is ReentrancyGuard, Ownable, Pausable {
         }
     }
 
-    function _transferOutToken(
-        address payable _account,
-        address _token,
-        uint256 _amount
-    ) internal {
+    function _transferOutToken(address payable _account, address _token, uint256 _amount) internal {
         if (_token == address(0)) {
             // Transfer native token reward to seeker
             _account.sendValue(_amount);
@@ -709,11 +699,7 @@ contract EnquiryPoolV3 is ReentrancyGuard, Ownable, Pausable {
         }
     }
 
-    function _transferInToken(
-        address _account,
-        address _token,
-        uint256 _amount
-    ) internal {
+    function _transferInToken(address _account, address _token, uint256 _amount) internal {
         if (_token == address(0)) {
             // check if the native token matches the transferred value
             require(msg.value == _amount, "AmountNotMatch");
@@ -731,11 +717,10 @@ contract EnquiryPoolV3 is ReentrancyGuard, Ownable, Pausable {
         return results[_enquiryId];
     }
 
-    function getAnswer(uint256 _enquiryId, address _account)
-        external
-        view
-        returns (AnswerLibV3.Answer memory)
-    {
+    function getAnswer(
+        uint256 _enquiryId,
+        address _account
+    ) external view returns (AnswerLibV3.Answer memory) {
         return answers[_enquiryId][_account];
     }
 
